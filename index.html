@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="scripts/addElemetFromList.js"></script>
+    <script src="scripts/allStyles.js"></script>
+    <script src="scripts/basicStyles.js"></script>
+    <script src="scripts/addElemetFromImgs.js"></script>
+    <script src="scripts/globalVariables.js"></script>
+    <script src="scripts/layout.js"></script>
+    <script src="scripts/selectionMenu.js"></script>
+    <script src="scripts/control.js"></script>
+    <script src="scripts/ElementAttributes.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body onload="main('')">
+    <div id="toolsBar"
+        style="height: 35px; background-color: rgb(229, 255, 234); padding: 6px; border: 2px solid black;margin: 2px;">
+        <label for="fileName">file name</label>
+        <input type="text" name="" id="fileName">
+        <button onclick='downloadPage()' style="height: 25px; width: 100px;">Save</button>
+        <div style="width: 2px; height: 100%; border-left: 2px black solid; display: inline; margin-right: 10px;"></div>
+        <input type="file" title="upload" id="upload" onchange="uploadFile()">
+        <button onclick='resetClick()' style="height: 25px; width: 100px;">Reset</button>
+        <button onclick='createNew()' style="height: 25px; width: 100px;">New</button>
+    </div>
+    <div id="main">
+        <div id="edit-menu">
+            <div id="show_hide">
+                <label  id="label_menuAddElementByImg" class="show_menu" onclick=" Show_hide_menu(this)" for=""
+                    title="Add Element"> <img width="40px" src="imgs/menus/add01.svg" alt=""></label>
+                <label id="label_menuSelectElement" class="show_menu" onclick=" Show_hide_menu(this)" for=""
+                    title="Select Element"><img width="40px" src="imgs/menus/tree.svg" alt=""></label>
+                <label id="label_menuAttributes" class="show_menu" onclick=" Show_hide_menu(this)" for=""
+                    title="Element attributes"><img width="40px" src="imgs/menus/settings.svg" alt=""></label>
+                <label id="label_menuBasicCss" class="show_menu" onclick=" Show_hide_menu(this)" for=""
+                    title="Element styles"><img width="40px" src="imgs/menus/design01.svg" alt=""></label>
+                    <hr>
+                <label id="label_menuAddElementByList" class="show_menu" onclick=" Show_hide_menu(this)" for=""
+                    title="Add Element"><img width="40px" src="imgs/menus/add02.svg" alt=""></label>
+                <label id="label_menuCss" class="show_menu" onclick=" Show_hide_menu(this)" for=""
+                    title="Element styles"><img width="40px" src="imgs/menus/design02.svg" alt=""></label>
+            </div>
+            <div>
+                <div id="menuAddElementByImg" class="menu" style=" display: none;">
+                    <p id="p_0">
+                        Add Element
+                    </p>
+                    <div id="menuAddElementByImg_imgs">
+                        <img id="div" title="div" src="imgs/html/14.png">
+                        <img id="span" title="span" src="imgs/html/14.png">
+                        <img id="p" title="p" src="imgs/html/17.png">
+                        <img id="img" title="img" src="imgs/html/10.png">
+                        <img id="audio" title="audio" src="imgs/html/02.png">
+                        <img id="video" title="video" src="imgs/html/11.png">
+                        <img id="code" title="code" src="imgs/html/03.png">
+                        <img id="form" title="form" src="imgs/html/05.png">
+                        <img id="label" title="label" src="imgs/html/13.png">
+                        <img id="button" title="button" src="imgs/html/19.png">
+                        <img id="input-text" title="input-text" src="imgs/html/25.png">
+                        <img id="input-number" title="input-number" src="imgs/html/24.png">
+                        <img id="input-email" title="input-email" src="imgs/html/23.png">
+                        <img id="input-password" title="input-password" src="imgs/html/01.png">
+                        <img id="input-submit" title="input-submit" src="imgs/html/26.png">
+                        <img id="input-radio" title="input-radio" src="imgs/html/22.png">
+                        <img id="input-range" title="input-range" src="imgs/html/20.png">
+                        <img id="input-checkbox" title="input-checkbox" src="imgs/html/06.png">
+                        <img id="input-color" title="input-color" src="imgs/html/18.png">
+                        <img id="input-file" title="input-file" src="imgs/html/12.png">
+                        <img id="textarea" title="textarea" src="imgs/html/21.png">
+                        <img id="select" title="select" src="imgs/html/16.png">
+                        <img id="table" title="table" src="imgs/html/15.png">
+                        <img id="ul" title="ul" src="imgs/html/09.png">
+                        <img id="ol" title="ol" src="imgs/html/07.png">
+                        <img id="a" title="a" src="imgs/html/08.png">
+                        <img id="date" title="date" src="imgs/html/04.png">
+                        <div style="display:block; width: 250px; text-align: center;">
+                            <label for="free">Absolute position</label>
+                            <input value="1" type="checkbox" name="free_position" id="free">
+                        </div>
+                        <div style="display:block; width: 250px; text-align: center;">
+                            <input type="button" value="Add" onclick="addElementFromImg()"
+                                style="width: 233px;margin-bottom: 15px;">
+                        </div>
+                    </div>
+                </div>
+                <div id="menuSelectElement" class="menu" style=" display: none;">
+                    <p id="p_0">
+                        Elements
+                    </p>
+                    <div id="ids">
+                    </div>
+                    <button style="width: 228px; display: block;" id="b_clone_element" onclick="cloneElement()">Create
+                        copy</button>
+                    <button style="width: 228px; display: block;" id="b_delete_element"
+                        onclick="deleteElementHtml()">Remove</button>
+                </div>
+                <div id="menuAttributes" class="menu" style=" display: none;">
+                    <p id="p_0">
+                        Element attributes
+
+                    </p>
+                    <hr>
+                    <label for="attributes">Attributes</label>
+                    <select onchange="select_attribute()" id="attributes" name="attributes">
+                    </select>
+                    <label style="display: block;" for="text_new_value"> New value: </label>
+                    <input type="text" name="" hidden id="text_new_value" onchange="saveChangesInAttr(this)">
+                    <select name="" hidden id="select_new_value_html" onchange="saveChangesInAttr(this)">
+                    </select>
+                    <br>
+                    <br>
+                    <div>
+                        <label for="innerText">Text</label>
+                        <input type="text" name="" id="innerText" onchange="saveChangesInAttr(this)">
+                    </div>
+                    <div id="addToTable" style="text-align: center;">
+                        Table
+                        <button onclick="addRow()">add row</button>
+                        <button onclick="addCell()">add cell</button>
+                    </div>
+                    <div id="addToList" style="text-align: center;">
+                        List
+                        <button onclick="addItem()">add item</button>
+                    </div>
+                </div>
+                <div id="menuBasicCss" class="menu" style=" display: none;">
+                    <p id="p_0">
+                        Element styles
+                    </p>
+                    <hr>
+                    <div style="display: flex ; flex-direction: column;">
+                        <div style="background-color: rgb(228, 245, 220);; margin-bottom: 10px; padding: 5px;">
+                            <div style="display: flex; flex-direction: column ;justify-content: center;">
+                                <label for="font-size" style="padding: 4px; ">Font size</label>
+                                <input type="text" id="font-size">
+                                <label for="width" style="padding: 4px; ">Width</label>
+                                <input type="text" id="width">
+                                <label for="height" style="padding: 4px; ">Height</label>
+                                <input type="text" id="height">
+                            </div>
+                        </div>
+
+                        <div style="background-color: rgb(228, 245, 220);; margin-bottom: 10px; padding: 5px;">
+                            <div style="text-align: center ;margin-bottom: 5px">Position</div>
+                            <div style="display: flex; flex-direction: row ;justify-content: center; ">
+                                <label for="absolute">Absolute</label>
+                                <input type="radio" name="position" id="absolute" value="absolute">
+                                <label for="static">Static</label>
+                                <input type="radio" name="position" id="static" value="static">
+                            </div>
+                        </div>
+                        <div style="background-color: rgb(228, 245, 220);; margin-bottom: 10px; padding: 5px;">
+                            <div style="text-align: center ;margin-bottom: 5px">Color</div>
+                            <div style="display: flex; flex-direction: row ;justify-content: center;">
+                                <label for="background-color" style="padding: 4px; ">Backcolor</label>
+                                <input type="color" id="background-color" style="width: 30px; height: 30px;">
+                                <label for="color" style="padding: 4px; ">Forecolor</label>
+                                <input type="color" id="color" style="width: 30px; height: 30px;">
+                            </div>
+                        </div>
+                        <div style="background-color: rgb(228, 245, 220);; margin-bottom: 10px; padding: 5px;">
+                            <div style="text-align: center ;margin-bottom: 5px">Text align</div>
+                            <div style="display: flex; flex-direction: row ;justify-content: center;">
+                                <label for="start-text">Start</label>
+                                <input type="radio" name="text-align" id="start-text" value="start">
+                                <label for="center-text">Center</label>
+                                <input type="radio" name="text-align" id="center-text" value="center">
+                                <label for="end-text">End</label>
+                                <input type="radio" name="text-align" id="end-text" value="end">
+                            </div>
+                        </div>
+                        <div style="background-color: rgb(228, 245, 220); margin-bottom: 10px; padding: 5px;">
+                            <div style="text-align: center ;margin-bottom: 5px;">Flex</div>
+                            <div style="display: flex; flex-direction: row ;justify-content: center; ">
+                                <label for="noFlex">No flex</label>
+                                <input type="radio" name="display" id="noFlex" value="initial">
+                                <label for="flex">Block</label>
+                                <input type="radio" name="display" id="flex" value="flex">
+                                <label for="inline-flex">Inline</label>
+                                <input type="radio" name="display" id="inline-flex" value="inline-flex">
+                            </div>
+                        </div>
+                        <div style="background-color: rgb(228, 245, 220); margin-bottom: 10px; padding: 5px;">
+                            <div style="text-align: center ;margin-bottom: 5px;">Flex direction</div>
+                            <div style="display: flex; flex-direction: row ;justify-content: center;">
+                                <label for="initial">Initial</label>
+                                <input type="radio" name="flex-direction" id="initial" value="initial">
+                                <label for="row-flex">Row</label>
+                                <input type="radio" name="flex-direction" id="row-flex" value="row">
+                                <label for="column-flex">Column</label>
+                                <input type="radio" name="flex-direction" id="column-flex" value="column">
+                            </div>
+                        </div>
+                        <div style="background-color: rgb(228, 245, 220); margin-bottom: 10px; padding: 5px;">
+                            <div style="text-align: center ;margin-bottom: 5px;">Justify content</div>
+                            <div style="display: flex; flex-direction: row ;justify-content: center;">
+                                <label for="start-justify">Start</label>
+                                <input type="radio" name="justify-content" id="start-justify" value="start">
+                                <label for="center-justify">Center</label>
+                                <input type="radio" name="justify-content" id="center-justify" value="center">
+                                <label for="end-justify">End</label>
+                                <input type="radio" name="justify-content" id="end-justify" value="end">
+                            </div>
+                        </div>
+                        <div style="background-color: rgb(228, 245, 220); margin-bottom: 10px; padding: 5px;">
+                            <div style="text-align: center ;margin-bottom: 5px;">Align items</div>
+                            <div style="display: flex; flex-direction: row ;justify-content: center;">
+                                <label for="start-items">Start</label>
+                                <input type="radio" name="align-items" id="start-items" value="start">
+                                <label for="center-items">Center</label>
+                                <input type="radio" name="align-items" id="center-items" value="center">
+                                <label for="end-items">End</label>
+                                <input type="radio" name="align-items" id="end-items" value="end">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="menuAddElementByList" class="menu" style=" display: none;">
+                    <p id="p_0">
+                        Add Element
+                    </p>
+                    <select id="all_elements" name="all_element" style="margin: 10px; width: 220px;">
+                    </select>
+                    <div style="display:block; width: 250px; text-align: center;">
+                        <label for="freeAll">Absolute position</label>
+                        <input value="1" type="checkbox" name="free_positionAll" id="freeAll">
+                    </div>
+                    <button style="width: 233px;margin-bottom: 15px;" onclick="add_element_from_select()">Add</button>
+                </div>
+                <div id="menuCss" class="menu" style=" display: none;">
+                    <p id="p_0">
+                        Element styles
+                    </p>
+                    <hr>
+                    <label for="attributes">Css properties</label>
+                    <select onchange="select_property()" id="properties" name="attributes">
+                    </select>
+                    <label style="display: block;" for="text_new_value_css"> New value: </label>
+                    <input type="text" name="" hidden id="text_new_value_css">
+                    <input type="color" name="" hidden id="color_new_value_css">
+                    <select name="" hidden id="select_new_value_css">
+                    </select>
+                    <label style="display: block;" for="" id="more_inf"></label>
+                    <br>
+                    <button style="width: 228px; display: block;" id="b_save_element"
+                        onclick="saveElementStyle()">Save</button>
+                    <hr>
+                    <button style="width: 228px; display: block;" id="b_clear_all_style"
+                        onclick="clear_all_style()">Clear
+                        all
+                        style</button>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
